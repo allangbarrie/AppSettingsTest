@@ -19,7 +19,7 @@
         }
         public string GetAdminPass()
         {
-            return mailSecret;
+            return adminPass;
         }
     }
     public interface IAppConfig
