@@ -7,18 +7,18 @@ namespace AppSettingsTest.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private IConfiguration configuration;
+        private readonly IAppConfig _appconfig;
 
-        public HomeController(ILogger<HomeController> logger, IConfiguration iConfig)
+        public HomeController(ILogger<HomeController> logger, IAppConfig appconfig)
         {
             _logger = logger;
-            configuration = iConfig;
+            _appconfig = appconfig;
         }
 
         public IActionResult Index()
         {
 
-            string mailSecret = configuration.GetValue<string>("ApplicationSecrets:MailSecret");
+            var mailSecret = _appconfig.GetTestValue();
 
             ViewData["MailPassword"] = mailSecret;
 
