@@ -2,22 +2,29 @@
 {
     public class AppConfig : IAppConfig
     {
-        public readonly string _testvalue = string.Empty;
+        public readonly string mailSecret = string.Empty;
+        public readonly string adminPass = string.Empty;
 
         public IConfiguration Configuration { get; }
         public AppConfig(IConfiguration configuration)
         {
             Configuration = configuration;
-            _testvalue = Configuration["MailSecret"];
+            mailSecret = Configuration["ApplicationSecrets:MailSecret"];
+            adminPass = Configuration["ApplicationSecrets:AdminPass"];
         }
 
-        public string GetTestValue()
+        public string GetMailSecret()
         {
-            return _testvalue;
+            return mailSecret;
+        }
+        public string GetAdminPass()
+        {
+            return mailSecret;
         }
     }
     public interface IAppConfig
     {
-        string GetTestValue();
+        string GetMailSecret();
+        string GetAdminPass();
     }
 }

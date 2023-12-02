@@ -18,9 +18,11 @@ namespace AppSettingsTest.Controllers
         public IActionResult Index()
         {
 
-            var mailSecret = _appconfig.GetTestValue();
+            var mailSecret = _appconfig.GetMailSecret();
+            var adminSecret = _appconfig.GetAdminPass();
 
             ViewData["MailPassword"] = mailSecret;
+            ViewData["AdminPassword"] = adminSecret;
 
             return View();
         }
